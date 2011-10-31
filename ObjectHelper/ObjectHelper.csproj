@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6015FD14-AA03-473D-9C96-93C0F9A442D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ObjectHelper</RootNamespace>
+    <AssemblyName>ObjectHelper</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseDBObject.cs" />
+    <Compile Include="DBObjectType\Aggregate.cs" />
+    <Compile Include="DBObjectType\Assembly.cs" />
+    <Compile Include="DBObjectType\CheckConstraint.cs" />
+    <Compile Include="DBObjectType\CLRTrigger.cs" />
+    <Compile Include="DBObjectType\Column.cs" />
+    <Compile Include="DBObjectType\Contract.cs" />
+    <Compile Include="DBObjectType\BrokerPriority.cs" />
+    <Compile Include="DBObjectType\CLRUserDefinedFunction.cs" />
+    <Compile Include="DBObjectType\Default.cs" />
+    <Compile Include="DBObjectType\DefaultConstraint.cs" />
+    <Compile Include="DBObjectType\ForeignKeyConstraint.cs" />
+    <Compile Include="DBObjectType\FullTestStopList.cs" />
+    <Compile Include="DBObjectType\FullTextCatalog.cs" />
+    <Compile Include="DBObjectType\FullTextIndex.cs" />
+    <Compile Include="DBObjectType\Index.cs" />
+    <Compile Include="DBObjectType\IndexColumn.cs" />
+    <Compile Include="DBObjectType\MessageType.cs" />
+    <Compile Include="DBObjectType\Parameter.cs" />
+    <Compile Include="DBObjectType\PartitionFunction.cs" />
+    <Compile Include="DBObjectType\PartitionScheme.cs" />
+    <Compile Include="DBObjectType\PrimaryKeyConstraint.cs" />
+    <Compile Include="DBObjectType\Principal.cs" />
+    <Compile Include="DBObjectType\RemoteServiceBinding.cs" />
+    <Compile Include="DBObjectType\Route.cs" />
+    <Compile Include="DBObjectType\Rule.cs" />
+    <Compile Include="DBObjectType\SQLUserDefinedFunction.cs" />
+    <Compile Include="DBObjectType\Schema.cs" />
+    <Compile Include="DBObjectType\Service.cs" />
+    <Compile Include="DBObjectType\ServiceQueue.cs" />
+    <Compile Include="DBObjectType\StoredProcedure.cs" />
+    <Compile Include="DBObjectType\StoredProcedureParameter.cs" />
+    <Compile Include="DBObjectType\Synonym.cs" />
+    <Compile Include="DBObjectType\Table.cs" />
+    <Compile Include="DBObjectType\Trigger.cs" />
+    <Compile Include="DBObjectType\UniqueConstraint.cs" />
+    <Compile Include="DBObjectType\UserDefinedDataType.cs" />
+    <Compile Include="DBObjectType\UserDefinedTableType.cs" />
+    <Compile Include="DBObjectType\UserDefinedType.cs" />
+    <Compile Include="DBObjectType\View.cs" />
+    <Compile Include="DBObjectType\XMLSchemaCollection.cs" />
+    <Compile Include="FetchEventArgs.cs" />
+    <Compile Include="ObjectDB.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptGenerator.cs" />
+    <Compile Include="ScriptingOptions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\Tables_10.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\TableDataCompression_10.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\Columns_10.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\DefaultConstraints.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\CheckConstraints.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\Indexes_10.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\IndexColumns.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\Triggers_10.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\StoredProcedures.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\Views.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\CLRTriggers_10.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\Parameters_10.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SQL\Contracts.sql" />
+    <EmbeddedResource Include="SQL\Defaults.sql" />
+    <EmbeddedResource Include="SQL\Assemblies_10.sql" />
+    <EmbeddedResource Include="SQL\Aggregates.sql" />
+    <EmbeddedResource Include="SQL\Synonyms.sql" />
+    <EmbeddedResource Include="SQL\ForeignKeys.sql" />
+    <EmbeddedResource Include="SQL\XMLSchemaCollections.sql" />
+    <EmbeddedResource Include="SQL\MessageTypes.sql" />
+    <EmbeddedResource Include="SQL\PartitionFunctions.sql" />
+    <EmbeddedResource Include="SQL\ServiceQueues.sql" />
+    <EmbeddedResource Include="SQL\FullTextCatalogs.sql" />
+    <EmbeddedResource Include="SQL\FullTextIndexes_10.sql" />
+    <EmbeddedResource Include="SQL\FullTextStopLists.sql" />
+    <EmbeddedResource Include="SQL\Services.sql" />
+    <EmbeddedResource Include="SQL\BrokerPriorities.sql" />
+    <EmbeddedResource Include="SQL\PartitionSchemes.sql" />
+    <EmbeddedResource Include="SQL\RemoteServiceBindings.sql" />
+    <EmbeddedResource Include="SQL\Rules.sql" />
+    <EmbeddedResource Include="SQL\Routes.sql" />
+    <EmbeddedResource Include="SQL\Schemas.sql" />
+    <EmbeddedResource Include="SQL\SQLUserDefinedFunctions.sql" />
+    <EmbeddedResource Include="SQL\UserDefinedDataTypes_10.sql" />
+    <EmbeddedResource Include="SQL\UserDefinedTypes.sql" />
+    <EmbeddedResource Include="SQL\UserDefinedTableTypes.sql" />
+    <EmbeddedResource Include="SQL\CLRUserDefinedFunctions_10.sql" />
+    <EmbeddedResource Include="SQL\Assemblies_9.sql" />
+    <EmbeddedResource Include="SQL\CLRTriggers_9.sql" />
+    <EmbeddedResource Include="SQL\CLRUserDefinedFunctions_9.sql" />
+    <EmbeddedResource Include="SQL\Columns_9.sql" />
+    <EmbeddedResource Include="SQL\FullTextIndexes_9.sql" />
+    <EmbeddedResource Include="SQL\Parameters_9.sql" />
+    <EmbeddedResource Include="SQL\Triggers_9.sql" />
+    <EmbeddedResource Include="SQL\Tables_9.sql" />
+    <EmbeddedResource Include="SQL\UserDefinedDataTypes_9.sql" />
+    <EmbeddedResource Include="SQL\Indexes_9.sql" />
+    <Content Include="SQL\DatabasePrincipals.sql" />
+    <EmbeddedResource Include="SQL\Principals.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

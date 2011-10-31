@@ -1,0 +1,1 @@
+﻿select name, object_id, [Definition] = OBJECT_DEFINITION(object_id) from sys.objects where type='D' and parent_object_id=0
