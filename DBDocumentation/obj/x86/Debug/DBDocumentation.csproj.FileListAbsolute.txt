@@ -22,3 +22,6 @@ E:\Projects\2011\DBScripter\DBDocumentation\bin\Debug\Template\toc.html
 E:\Projects\2011\DBScripter\DBDocumentation\bin\Debug\Template\toggle-small-expand.png
 E:\Projects\2011\DBScripter\DBDocumentation\bin\Debug\Template\toggle-small.png
 E:\Projects\2011\DBScripter\DBDocumentation\bin\Debug\Template\_styles.css
+E:\Projects\2011\DBScripter\Codeplex\DBDocumentation\bin\Debug\DBDocumentation.exe.config
+E:\Projects\2011\DBScripter\Codeplex\DBDocumentation\obj\x86\Debug\DBDocumentation.exe
+E:\Projects\2011\DBScripter\Codeplex\DBDocumentation\obj\x86\Debug\DBDocumentation.pdb
