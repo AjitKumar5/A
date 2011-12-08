@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Linq;
 
 namespace ObjectHelper.DBObjectType
 {
-    public class Index : BaseDBObject
+    public class Index : BaseDbObject
     {
         public int IndexId { get;set; }
         public string Type {get;set;}
@@ -28,16 +28,20 @@ namespace ObjectHelper.DBObjectType
         public string FileStreamFileGroup { get; set; }
         public string ObjectName { get; set; }
         public string ObjectSchema { get; set; }
+        public int ReferencedObjecId { get; set; }
+        public string ReferencedObjectType { get; set; }
         public SortedList<int, string> Partitions { get; set; }
         public List<IndexColumn> Columns { get; set; }
 
         public Index()
         { 
+            Columns=new List<IndexColumn>();
+            Partitions = new SortedList<int, string>();
         }
 
         public virtual string Script(ScriptingOptions os)
         {
-            StringBuilder sbScript = new StringBuilder();
+            var sbScript = new StringBuilder();
 
             sbScript.Append("CREATE ");
             if (IsUnique)
@@ -51,72 +55,54 @@ namespace ObjectHelper.DBObjectType
             sbScript.AppendLine();
             sbScript.Append("(");
             sbScript.AppendLine();
-            for (int i = 0; i < Columns.Count; i++)
+
+            var sortedColumns = Columns.Where(c => !c.IsIncluded).OrderBy(c => c.IndexColumnId).ToArray();
+            for (int i = 0; i < sortedColumns.Count(); i++)
             {
-                sbScript.Append("\t[" + Columns[i].Name + "]");
-                if (Columns[i].IsDescendingKey)
-                {
-                    sbScript.Append(" DESC");
-                }
-                else
-                {
-                    sbScript.Append(" ASC");
-                }
-                if (i != Columns.Count - 1)
-                {
+                var column = sortedColumns[i];
+                sbScript.Append("\t[" + column.Name + "]");
+                sbScript.Append(column.IsDescendingKey ? " DESC" : " ASC");
+                
+                if (i != sortedColumns.Count() - 1)
                     sbScript.Append(",");
-                }
+
                 sbScript.AppendLine();
             }
             
             sbScript.Append(") ");
 
+            var includedColumns = Columns.Where(c => c.IsIncluded).OrderBy(c => c.IndexColumnId).ToArray();
+            if(includedColumns.Count() > 0)
+            {
+                sbScript.AppendLine();
+                sbScript.Append("INCLUDE (");
+                sbScript.AppendLine();
+
+                for (int i = 0; i < includedColumns.Count(); i++)
+                {
+                    var column = includedColumns[i];
+                    sbScript.Append("\t[" + column.Name + "]");
+
+                    if (i != includedColumns.Count() - 1)
+                        sbScript.Append(",");
+
+                    sbScript.AppendLine();
+                }
+
+                sbScript.Append(") ");
+            }
+
             sbScript.Append(" WITH (");
             sbScript.Append("PAD_INDEX = ");
-            if (IsPadded)
-            {
-                sbScript.Append("ON");
-            }
-            else
-            {
-                sbScript.Append("OFF");
-            }
+            sbScript.Append(IsPadded ? "ON" : "OFF");
             sbScript.Append(", STATISTICS_NORECOMPUTE = ");
-            if (StatisticsNoRecompute)
-            {
-                sbScript.Append("ON");
-            }
-            else
-            {
-                sbScript.Append("OFF");
-            }
+            sbScript.Append(StatisticsNoRecompute ? "ON" : "OFF");
             sbScript.Append(", IGNORE_DUP_KEY = ");
-            if (IgnoreDupKey)
-            {
-                sbScript.Append("ON");
-            }
-            else
-            {
-                sbScript.Append("OFF");
-            }
+            sbScript.Append(IgnoreDupKey ? "ON" : "OFF");
             sbScript.Append(", ALLOW_ROW_LOCKS = ");
-            if (AllowRowLocks)
-            {
-                sbScript.Append("ON");
-            }
-            else
-            {
-                sbScript.Append("OFF");
-            }
+            sbScript.Append(AllowRowLocks ? "ON" : "OFF");
             sbScript.Append(", ALLOW_PAGE_LOCKS = ");
-            if (AllowPageLocks)
-            {
-                sbScript.Append("ON");
-            }
-            else
-            {
-                sbScript.Append("OFF");
-            }
+            sbScript.Append(AllowPageLocks ? "ON" : "OFF");
             if (FillFactor != 0)
             {
                 sbScript.Append(", FILLFACTOR = " + FillFactor);
@@ -140,7 +126,7 @@ namespace ObjectHelper.DBObjectType
                     sbScript.Append(" FILESTREAM_ON [" + FileStreamFileGroup + "]");
                 }
             }
-            sbScript.Append(System.Environment.NewLine + "GO");
+            sbScript.Append(Environment.NewLine + "GO");
             return sbScript.ToString();
 
             

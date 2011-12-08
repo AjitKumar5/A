@@ -15,7 +15,7 @@ select
 	fkc.constraint_column_id,
 	ParentColumnName =  c1.name,
 	ReferencedObjectName = o2.name,
-	ReferencedObjectOd = o2.object_id,
+	ReferencedObjectId = o2.object_id,
 	ReferencedColumnName =c2.name,
 	ReferencedObjectSchema = s.name
 from sys.foreign_key_columns fkc 
