@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ObjectHelper.DBObjectType
 {
-    public class Index : BaseDbObject
+    public class Index : BaseDBObject
     {
         public int IndexId { get;set; }
         public string Type {get;set;}
